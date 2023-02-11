@@ -7,11 +7,11 @@ def simple(ch)
 end
 
 #Метод 1. Найти максимальный простой делитель числа.
-def maxdel(ch)
+def max_del(ch)
 	del=0
 	ch.downto(1).each {|div| del = div if simple(div) and ch % div == 0 and div > del}
 	if del==0
-		return "Таких делителей нет"
+		return nil
 	else 
 		return del
 	end
@@ -28,7 +28,7 @@ def notdel5(ch)
 		count+=1
 	end }
 	if count == 0
-		return "Подходящих цифр нет."
+		return nil
 	else 
 		return pr
 	end
@@ -46,17 +46,23 @@ def NOD(del, pr)
     return del
 end
 
+def proizvedenie(ch)
+	pr=1
+	ch.digits.each{|x| pr*=x}
+	pr
+end
+
+def max_nechet_notpr_del(ch)
+	maxdel=0
+	ch.downto(1).each {|div| maxdel=div if div%2!=0 and div>maxdel and simple(div)==false and ch%div==0}
+end
 
 def method3(ch)
-	pr=1
-	maxdel=0
-	ch.digits.each{|x| pr*=x}
-	ch.downto(1).each {|div| maxdel=div if div%2!=0 and div>maxdel and simple(div)==false and ch%div==0}
+	maxdel=max_nechet_notpr_del
+	pr=proizvedenie(ch)
 	if pr==0
-		return "Невозможно найти НОД, произведение равно 0"
+		return nil
 	end
-	puts "Максимальный непростой нечётный делитель числа: #{maxdel}"
-    puts "Произведение цифр данного числа: #{pr}"
     n=NOD(pr,maxdel)
     return n
 end
