@@ -6,6 +6,7 @@ def simple(ch)
         true
 end
 
+
 #Метод 1. Найти максимальный простой делитель числа.
 def max_del(ch)
 	del=0
