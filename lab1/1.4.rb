@@ -40,16 +40,68 @@ def chet_nechet(ar)
 	ar.each_index{|x| puts ar[x] if x%2==0}
 	ar.each_index{|x| puts ar[x] if x%2!=0}
 end
+
+#1.51
+def create_L1(ar)
+	arr= Array.new
+	ar.each{|x| arr.push(x) if !(arr.include?(x)) }
+	arr
+end
+
+def kolvo_elem(ar,ch)
+	k=0
+	ar.each{|x| k+=1 if x==ch}
+	k
+end
+
+
+def create_L2(ar, newar)
+	arr=Array.new
+	newar.each{
+		|x|
+		k=kolvo_elem(ar,x) 
+		arr.push(k)
+		}
+	arr
+end
+
+def task_3(ar)
+	ar_L1=create_L1(ar)
+	ar_L2=create_L2(ar,ar_L1)
+	puts "L1: #{ar_L1}"
+	puts "L2: #{ar_L2}"
+end
+
 file_path="/home/yana/rubyyy/array.txt"
 file = File.open(file_path)
 array = file.readline.split(' ').map(&:to_i)
 
 
-n=4
-puts "Массив: #{array}"
-puts "Результат проверки на глобальный максимум: #{check_global_max(array, n)}"
-puts "Результат проверки на глобальный минимума: #{check_global_min(array, n)}"
-puts "Результат циклического сдвига: #{left(array)}"
-puts "Вывод элементов с чётными индексами, затем нечётными: #{chet_nechet(array)}"
+methods = [:check_global_max, :check_global_min, :left,:chet_nechet, :task_3]
+puts 'Выберите:'
+puts '1. Результат проверки на глобальный максимум
+2. Результат проверки на глобальный минимум
+3. Результат циклического сдвига
+4. Вывод элементов с чётными индексами, затем нечётными
+5. Построить два списка L1 и L2, где элементы L1 это неповторяющиеся элементы исходного списка, а элемент списка L2 с
+номером i показывает, сколько раз элемент списка L1 с таким номером повторяется в исходном.'
+
+method_num = STDIN.gets.chomp.to_i
+unless method_num.between?(1, methods.length)
+  puts 'Неизвестный метод'
+  return
+end
+
+
+
+if method_num==1 or method_num==2
+  puts 'Введите номер элемента:'
+  print"a="
+  a=STDIN.gets.chomp.to_i
+  res = method(methods[method_num-1]).call(array,a)
+else
+  res = method(methods[method_num-1]).call(array)
+end
+puts res.inspect
 
 
