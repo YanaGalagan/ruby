@@ -18,58 +18,59 @@
 #повторяется в исходном.
 
 #1.3
-def check_global_max(ar, ind)
+def global_max?(ar, ind)
 	ind=Integer(ind)
 	ar[ind]==ar.max
 end
 
 
 #1.15
-def check_global_min(ar, ind)
+def global_min?(ar, ind)
 	ind=Integer(ind)
 	ar[ind]==ar.min
 end
 
 #1.27
-def left(ar)
+def cycle_left(ar)
 	ar.rotate(1)
 end
 
 #1.39
-def chet_nechet(ar)
-	ar.each_index{|x| puts ar[x] if x%2==0}
-	ar.each_index{|x| puts ar[x] if x%2!=0}
+def even_elements(ar)
+	arr=Array.new
+	ar.each_index{|x| arr.push(ar[x]) if x%2==0}
+	arr
+	
+end
+
+def odd_element(ar)
+	arr=Array.new
+	ar.each_index{|x| arr.push(ar[x]) if x%2!=0}
+	arr
 end
 
 #1.51
-def create_L1(ar)
+def array_of_elements_without_repeats(ar)
 	arr= Array.new
 	ar.each{|x| arr.push(x) if !(arr.include?(x)) }
 	arr
 end
 
-def kolvo_elem(ar,ch)
+def kolvo_elements_with_value(ar,ch)
 	k=0
 	ar.each{|x| k+=1 if x==ch}
 	k
 end
 
 
-def create_L2(ar, newar)
+def array_of_number_of_elements(ar, newar)
 	arr=Array.new
 	newar.each{
 		|x|
-		k=kolvo_elem(ar,x) 
+		k=kolvo_elements_with_value(ar,x) 
 		arr.push(k)
 		}
 	arr
-end
-
-def task_3(ar)
-	ar_L1=create_L1(ar)
-	ar_L2=create_L2(ar,ar_L1)
-	puts "L1: #{ar_L1}"
-	puts "L2: #{ar_L2}"
 end
 
 file_path="/home/yana/rubyyy/array.txt"
@@ -77,7 +78,6 @@ file = File.open(file_path)
 array = file.readline.split(' ').map(&:to_i)
 
 
-methods = [:check_global_max, :check_global_min, :left,:chet_nechet, :task_3]
 puts 'Выберите:'
 puts '1. Результат проверки на глобальный максимум
 2. Результат проверки на глобальный минимум
@@ -93,15 +93,27 @@ unless method_num.between?(1, methods.length)
 end
 
 
+case method_num
+	when 1
+		puts 'Введите номер элемента:'
+  		print"a="
+  		a=STDIN.gets.chomp.to_i
+  		puts global_max?(array, a)
+  	when 2
+  		puts 'Введите номер элемента:'
+  		print"a="
+  		a=STDIN.gets.chomp.to_i
+  		puts global_min?(array, a)
+  	when 3
+  		puts "Результат: #{cycle_left(array)}"
+  	when 4
+  		puts"Элементы списка с чётными индексами: #{even_elements(array)}"
+  		puts"Элементы списка с нечётными индексами: #{odd_element(array)}"
 
-if method_num==1 or method_num==2
-  puts 'Введите номер элемента:'
-  print"a="
-  a=STDIN.gets.chomp.to_i
-  res = method(methods[method_num-1]).call(array,a)
-else
-  res = method(methods[method_num-1]).call(array)
+  	when 5
+  		ar_L1=array_of_elements_without_repeats(array)
+		ar_L2=array_of_number_of_elements(array,ar_L1)
+		puts "L1: #{ar_L1}"
+		puts "L2: #{ar_L2}"
 end
-puts res.inspect
-
 
