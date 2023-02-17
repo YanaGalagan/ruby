@@ -19,7 +19,7 @@ def max_del(ch)
 end	
 	
 #Произведение цифр числа, не делящихся на 5
-def notdel5(ch)
+def not_del5(ch)
 	pr=1
 	count = 0
 	ch.digits.each{
@@ -58,8 +58,8 @@ def max_nechet_notpr_del(ch)
 	ch.downto(1).each {|div| maxdel=div if div%2!=0 and div>maxdel and simple(div)==false and ch%div==0}
 end
 
-def method3(ch)
-	maxdel=max_nechet_notpr_del
+def nod_max_nechet_notpr_del_and_proizveden(ch)
+	maxdel=max_nechet_notpr_del(ch)
 	pr=proizvedenie(ch)
 	if pr==0
 		return nil
@@ -70,7 +70,7 @@ end
 
 puts "Введите число для обработки:"
 ch = gets.to_i
-puts "Метод 1, найти максимальный простой делитель числа: #{maxdel(ch)}"
-puts "Метод 2, найти произведение цифр числа, не делящихся на 5: #{notdel5(ch)}"
-puts "Метод 3, Найти НОД максимального нечетного непростого делителя числа и произведения цифр данного числа: #{method3(ch)}"
+puts "Метод 1, найти максимальный простой делитель числа: #{max_del(ch)}"
+puts "Метод 2, найти произведение цифр числа, не делящихся на 5: #{not_del5(ch)}"
+puts "Метод 3, Найти НОД максимального нечетного непростого делителя числа и произведения цифр данного числа: #{nod_max_nechet_notpr_del_and_proizveden(ch)}"
 
