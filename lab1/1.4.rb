@@ -80,7 +80,7 @@ array = file.readline.split(' ').map(&:to_i)
 def create_array_of_number_of_elemets_without_repeats(arr)
 	ar_L1=array_of_elements_without_repeats(arr)
 	ar_L2=array_of_number_of_elements(arr,ar_L1)
-	ar_L2
+	return ar_L1, ar_L2
 end
 
 puts 'Выберите:'
@@ -118,8 +118,7 @@ case method_num
   		puts"Элементы списка с нечётными индексами: #{odd_element(array)}"
 
   	when 5
-		ar_L1=array_of_elements_without_repeats(array)
-		ar_L2=create_array_of_number_of_elemets_without_repeats(array)
+		ar_L1, ar_L2=create_array_of_number_of_elemets_without_repeats(array)
 		puts "L1: #{ar_L1}"
 		puts "L2: #{ar_L2}"
 end
