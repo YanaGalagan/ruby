@@ -84,4 +84,20 @@ class Student
 	def telegram=(telegram_value)
 		@telegram=telegram_value
 	end
+
+	def print_student
+		str = "Information:\n"
+		str += "id: #{self.id}\n" unless self.id.nil?
+		str += "Имя: #{self.first_name}\n"
+		str += "Отчество: #{self.middle_name}\n"
+		str += "Фамилия: #{self.surname}\n"
+		str += "Номер телефона: #{self.phone_number}\n" unless self.phone_number.nil?
+		str += "mail: #{self.mail}\n" unless self.mail.nil?
+		str += "git: #{self.git}\n" unless self.git.nil?
+		str += "telegram: #{self.telegram}\n" unless self.telegram.nil?
+		str += "-------------"
+		str
+	end
+
+
 end
