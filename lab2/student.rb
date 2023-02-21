@@ -2,16 +2,27 @@
 
 class Student
 
+
+	other :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
+
 	#конструктор
-	def initialize(first_name, middle_name, surname, phone_number, mail) 
+	def initialize(id,first_name, middle_name, surname, options={}) 
+		self.id = id
 		self.first_name = first_name
 		self.middle_name = middle_name
 		self.surname = surname
-		self.phone_number = phone_number
-		self.mail = mail
+		self.phone_number = options[:phone_number]
+		self.mail = options[:mail]
+		self.git = options[:git]
+		self.telegram = options[:telegram]
 	end
 
     #геттеры
+
+    def id
+    	@id
+    end
+
 	def first_name
 		@first_name
 	end
@@ -32,8 +43,20 @@ class Student
 		@mail
 	end
 
+	def git
+		@git
+	end
+
+	def telegram
+		@telegram
+	end
 
 	#сеттеры
+	def id=(id_value)
+		@id=id_value
+	end
+
+
 	def first_name=(first_name_value)
 		@first_name=first_name_value
 	end
@@ -52,5 +75,13 @@ class Student
 
 	def mail=(mail_value)
 		@mail=mail_value
+	end
+
+	def git=(git_value)
+		@git=git_value
+	end
+
+	def telegram=(telegram_value)
+		@telegram=telegram_value
 	end
 end
