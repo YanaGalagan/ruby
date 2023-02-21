@@ -7,7 +7,7 @@ class Student
 
 	#конструктор
 	def initialize(id,first_name, middle_name, surname, options={}) 
-		self.id = id
+		self.id = options[:id]
 		self.first_name = first_name
 		self.middle_name = middle_name
 		self.surname = surname
