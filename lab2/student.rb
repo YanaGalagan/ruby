@@ -3,10 +3,10 @@
 class Student
 
 
-	other :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
+	attr_reader :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
 
 	#конструктор
-	def initialize(id,first_name, middle_name, surname, options={}) 
+	def initialize(first_name, middle_name, surname, options={}) 
 		self.id = options[:id]
 		self.first_name = first_name
 		self.middle_name = middle_name
