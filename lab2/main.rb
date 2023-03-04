@@ -11,6 +11,6 @@ student3= Student.new('Александр', 'Сергеевич','Сидоров
 	git:'github.com/superproger',telegram:'Serezha')
 
 
-puts student1.print_student
-puts student2.print_student
-puts student3.print_student
+puts student1.to_s
+puts student2.to_s
+puts student3.to_s
