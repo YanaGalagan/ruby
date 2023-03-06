@@ -32,6 +32,19 @@ class Student
     	return true if telegram=~/^@[^@]+$/ or telegram.nil?
     false
   	end
+
+  	#валидатор
+  	def validate?
+  		exist_git? and exist_contact?
+  	end
+
+  	def exist_git?
+  		!self.git.nil?
+  	end
+
+  	def exist_contact?
+  		!(self.phone_number.nil? and self.telegram.nil? and self.mail.nil?)
+  	end
 	#конструктор
 	def initialize(first_name, middle_name, surname, id:nil,phone_number:nil, git:nil,telegram:nil, mail:nil) 
 		self.first_name = first_name
