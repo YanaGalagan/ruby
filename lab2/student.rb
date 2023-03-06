@@ -4,7 +4,7 @@ class Student
 
 
 	attr_reader :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
-
+	# почему options, Вы уже знаете, как сделать конструктор с хешом так, чтобы в спецификации метода были все аргументы, начинку метода никто читать не будет, всё должны быть ясно из спецификации и, может быть, из комментария
 	#конструктор
 	def initialize(first_name, middle_name, surname, options={}) 
 		self.id = options[:id]
@@ -20,7 +20,7 @@ class Student
     
 	#сеттеры
 	def id=(id_value)
-		raise ArgumentError, "Incorrect value: id=#{id}!" if !id.nil? 
+		raise ArgumentError, "Incorrect value: id=#{id}!" if !id.nil? # надеюсь, это временная заглушка, жду нормальных валидаций
 		@id=id_value
 	end
 
