@@ -57,7 +57,12 @@ class Student
 		self.telegram = telegram
 	end
 
-    
+    def set_contacts(contacts)
+    	self.phone_number = contacts[:phone_number] unless contacts[:phone_number].nil?
+    	self.mail = contacts[:mail] unless contacts[:mail].nil?
+    	self.telegram = contacts[:telegram] unless contacts[:telegram].nil?
+    end
+
 	#сеттеры
 	def id=(id_value)
 		raise ArgumentError, "arg '#{other}' is not valid for id (must be int)" unless id_value.class == Integer or id_value.nil?  
