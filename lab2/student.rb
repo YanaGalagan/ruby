@@ -6,15 +6,15 @@ class Student
 	attr_reader :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
 
 	#конструктор
-	def initialize(first_name, middle_name, surname, options={}) 
-		self.id = options[:id]
+	def initialize(first_name, middle_name, surname, id:nil,phone_number:nil, git:nil,telegram:nil, mail:nil) 
 		self.first_name = first_name
 		self.middle_name = middle_name
 		self.surname = surname
-		self.phone_number = options[:phone_number]
-		self.mail = options[:mail]
-		self.git = options[:git]
-		self.telegram = options[:telegram]
+		self.id = id
+		self.phone_number = phone_number
+		self.mail = mail
+		self.git = git
+		self.telegram = telegram
 	end
 
     def self.is_phone?(phone_number)
