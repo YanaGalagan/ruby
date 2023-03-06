@@ -10,6 +10,7 @@ student2 = Student.new('Илья','Александрович','Петров', i
 student3= Student.new('Александр', 'Сергеевич','Сидоров', id:3, phone_number:'+79886325417',
 	git:'github.com/superproger',telegram:'@Serezha')
 
+student2.set_contacts(telegram: '@petrov2002')
 
 puts student1.to_s
 puts student2.to_s
