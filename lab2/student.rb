@@ -17,7 +17,12 @@ class Student
 		self.telegram = options[:telegram]
 	end
 
-    
+    def self.is_phone?(phone_number)
+    raise ArgumentError, "arg '#{phone_number}' is not string" unless phone_number.class == String or phone_number.nil?
+    return true if phone_number=~/^(\+7|8)\s?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}/ or phone_number.nil?
+    false
+  	end
+
 	#сеттеры
 	def id=(id_value)
 		raise ArgumentError, "Incorrect value: id=#{id}!" if !id.nil? 
@@ -41,7 +46,7 @@ class Student
 	end
 
 	def phone_number=(phone_number_value)
-		raise ArgumentError, "Incorrect value: phone_number=#{phone_number}!" if !phone_number.nil? 
+		raise ArgumentError, "Incorrect value: phone_number=#{phone_number_value}!" unless Student.is_phone?(phone_number_value) 
 		@phone_number=phone_number_value
 	end
 
@@ -64,6 +69,7 @@ class Student
 	#def self.is_number_phone?(phone_number)
 	#	raise ArgumentError, "#{phone_number} is not number phone" phone_number.class == String or phone_number.nil?
 	#	return true if phone_number=~/^/
+	
 	
 	def to_s
     result = "#{first_name} #{middle_name} #{surname}"
