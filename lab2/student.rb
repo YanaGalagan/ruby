@@ -1,5 +1,5 @@
 
-
+require 'json'
 class Student
 
 
@@ -56,6 +56,19 @@ class Student
 		self.git = git
 		self.telegram = telegram
 	end
+
+
+	def self.pars_str(str)
+		result = JSON.parse(str)
+		raise ArgumentError,"The argument must have first_name, middle_name and surname" unless 
+			(result.has_key?('first_name') and result.has_key?('middle_name') and result.has_key?('surname'))
+		
+		first_name = result.delete('first_name')
+    	middle_name = result.delete('middle_name')
+    	surname = result.delete('surname')
+    	Student.new(first_name, middle_name, surname, **result.transform_keys(&:to_sym))
+	end
+
 
     def set_contacts(contacts)
     	self.phone_number = contacts[:phone_number] unless contacts[:phone_number].nil?
