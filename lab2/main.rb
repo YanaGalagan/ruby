@@ -12,6 +12,9 @@ student3= Student.new('Александр', 'Сергеевич','Сидоров
 
 student2.set_contacts(telegram: '@petrov2002')
 
+puts Student.pars_str('{"surname": "Сергеев", 
+	"first_name": "Сергей", "middle_name": "Сергеевич", "id": 5, "phone_number": "+79886325417"}')
+
 puts student1.to_s
 puts student2.to_s
 puts student3.to_s
