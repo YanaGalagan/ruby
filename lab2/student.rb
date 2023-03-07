@@ -57,6 +57,20 @@ class Student
 		self.telegram = telegram
 	end
 
+ 	def short_name
+    	"#{surname} #{first_name[0]}. #{middle_name[0]}."
+  	end
+
+  	def get_contact
+    	return "phone= #{phone_number}" unless phone_number.nil?
+    	return "telegram= #{telegram}" unless telegram.nil?
+    	return "email= #{mail}" unless mail.nil?
+    	nil
+    end
+
+    def get_info
+    	"#{short_name}, #{get_contact}, git= #{git}"
+    end
 
 	def self.pars_str(str)
 		result = JSON.parse(str)
