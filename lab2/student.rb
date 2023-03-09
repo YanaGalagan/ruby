@@ -46,15 +46,13 @@ class Student
   		!(self.phone_number.nil? and self.telegram.nil? and self.mail.nil?)
   	end
 	#конструктор
-	def initialize(first_name, middle_name, surname, id:nil,phone_number:nil, git:nil,telegram:nil, mail:nil) 
+	def initialize(first_name: nil, middle_name:nil, surname:nil, id:nil,phone_number:nil, git:nil,telegram:nil, mail:nil) 
 		self.first_name = first_name
 		self.middle_name = middle_name
 		self.surname = surname
 		self.id = id
-		self.phone_number = phone_number
-		self.mail = mail
 		self.git = git
-		self.telegram = telegram
+		self.set_contacts(phone_number: phone_number,mail: mail, telegram:telegram)
 	end
 
  	def short_name
@@ -69,7 +67,10 @@ class Student
     end
 
     def get_info
-    	"#{short_name}, #{get_contact}, git= #{git}"
+    	result = "#{short_name}" if !(first_name.nil? or middle_name.nil? or surname.nil?) 
+    	result += " #{get_contact}"  unless get_contact.nil?
+    	result += "git= #{git}" unless git.nil?
+    	result
     end
 
 	def self.pars_str(str)
@@ -84,10 +85,10 @@ class Student
 	end
 
 
-    def set_contacts(contacts)
-    	self.phone_number = contacts[:phone_number] unless contacts[:phone_number].nil?
-    	self.mail = contacts[:mail] unless contacts[:mail].nil?
-    	self.telegram = contacts[:telegram] unless contacts[:telegram].nil?
+    def set_contacts(phone_number:nil, mail:nil, telegram:nil)
+    	self.phone_number = phone_number 
+    	self.mail = mail 
+    	self.telegram = telegram 
     end
 
 	#сеттеры
@@ -131,9 +132,6 @@ class Student
 		raise ArgumentError, "Incorrect value: telegram=#{telegram}!" unless Student.is_telegram?(telegram_value)
 		@telegram=telegram_value
 	end
-
-
-	
 	
 	def to_s
     result = "#{first_name} #{middle_name} #{surname}"
