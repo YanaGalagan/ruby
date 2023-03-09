@@ -1,6 +1,7 @@
 
 require 'json'
-class Student
+require_relative 'student_short'
+class Student < StudentShort
 
 
 	attr_reader :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
