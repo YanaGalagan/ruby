@@ -135,14 +135,35 @@ class Student < StudentShort
 	end
 	
 	def to_s
-    result = "#{first_name} #{middle_name} #{surname}"
-    result += " id=#{id}" unless id.nil?
-    result += " phone=#{phone_number}" unless phone_number.nil?
-    result += " git=#{git}" unless git.nil?
-    result += " telegram=#{telegram}" unless telegram.nil?
-    result += " mail=#{mail}" unless mail.nil?
+	    result = "#{first_name} #{middle_name} #{surname}"
+	    result += " id=#{id}" unless id.nil?
+	    result += " phone=#{phone_number}" unless phone_number.nil?
+	    result += " git=#{git}" unless git.nil?
+	    result += " telegram=#{telegram}" unless telegram.nil?
+	    result += " mail=#{mail}" unless mail.nil?
     result
-  end
+  	end
 
+  	def self.read_from_txt(adress)
+  		if !File.exist?(adress)
+  			raise ArgumentError "This file '#{adress}' not found"
+  		else
+  			student_arr= Array.new
+  			file = File.new(adress, "r:UTF-8")
+  			lines = file.read.to_s.strip
+  			string_student=""
+  			lines.each_char do |ch|
+  				string_student+= ch
+
+  				if ch=='}'
+  					student_arr.append(Student.pars_str(string_student))
+  					string_student= ""
+  				end
+  			end
+  			file.close
+  		end
+  		student_arr
+
+  	end
 
 end
