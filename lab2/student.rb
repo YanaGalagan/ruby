@@ -4,7 +4,7 @@ require_relative 'student_short'
 class Student < StudentShort
 
 
-	attr_reader :id, :first_name, :middle_name,:surname, :phone_number, :mail , :git, :telegram
+	attr_reader :id, :first_name, :middle_name, :phone_number, :mail , :telegram
 
 	def self.is_phone?(phone_number)
     	raise ArgumentError, "arg '#{phone_number}' is not string" unless phone_number.class == String or phone_number.nil?
@@ -145,5 +145,5 @@ class Student < StudentShort
     result
   	end
 
-  
+
 end
