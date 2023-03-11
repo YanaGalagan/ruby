@@ -75,14 +75,15 @@ class Student < StudentShort
     end
 
 	def self.pars_str(str)
-		result = JSON.parse(str)
+		args = JSON.parse(str)
 		raise ArgumentError,"The argument must have first_name, middle_name and surname" unless 
-			(result.has_key?('first_name') and result.has_key?('middle_name') and result.has_key?('surname'))
+			(args.has_key?('first_name') and args.has_key?('middle_name') and args.has_key?('surname'))
 		
-		first_name = result.delete('first_name')
-    	middle_name = result.delete('middle_name')
-    	surname = result.delete('surname')
-    	Student.new(first_name, middle_name, surname, **result.transform_keys(&:to_sym))
+    	new(first_name: args['first_name'], middle_name: args['middle_name'], 
+    		surname: args['surname'], id: args['id'],
+    		git: args['git'],
+            phone_number: args['phone_number'], telegram: args['telegram'], 
+            mail: args['mail'])
 	end
 
 
@@ -94,7 +95,7 @@ class Student < StudentShort
 
 	#сеттеры
 	def id=(id_value)
-		raise ArgumentError, "arg '#{other}' is not valid for id (must be int)" unless id_value.class == Integer or id_value.nil?  
+		raise ArgumentError, "arg '#{id_value}' is not valid for id (must be int)" unless id_value.class == Integer or id_value.nil?  
 		@id=id_value
 	end
 
@@ -144,26 +145,5 @@ class Student < StudentShort
     result
   	end
 
-  	def self.read_from_txt(adress)
-  		if !File.exist?(adress)
-  			raise ArgumentError "This file '#{adress}' not found"
-  		else
-  			student_arr= Array.new
-  			file = File.new(adress, "r:UTF-8")
-  			lines = file.read.to_s.strip
-  			string_student=""
-  			lines.each_char do |ch|
-  				string_student+= ch
-
-  				if ch=='}'
-  					student_arr.append(Student.pars_str(string_student))
-  					string_student= ""
-  				end
-  			end
-  			file.close
-  		end
-  		student_arr
-
-  	end
-
+  
 end
