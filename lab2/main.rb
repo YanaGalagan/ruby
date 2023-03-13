@@ -45,8 +45,24 @@ def read_from_txt(adress)
 
 end
 
+def write_to_txt(adress, arr_student)
+	if !File.exist?(adress)
+		raise ArgumentError "This file '#{adress}' not found"
+	else
+		result = '{ "StudentList":['
+		arr_student.each do |student|
+			result += student.to_json+ ","
+		end
+		result += result.chop + "]}"
+		File.write(adress, result)
+	end
+end
 
 student_st= read_from_txt('test_read.txt')
 puts student_st
 student5 = StudentShort.new(student_st[0])
 puts student5
+
+student_list = [student1, student2]
+
+write_to_txt('output.txt', student_list)
