@@ -4,7 +4,7 @@ require_relative 'student_short'
 class Student < StudentShort
 
 
-	attr_reader :id, :first_name, :middle_name, :phone_number, :mail , :telegram
+	attr_reader :first_name, :middle_name, :phone_number, :mail , :telegram
 
 	def self.is_phone?(phone_number)
     	raise ArgumentError, "arg '#{phone_number}' is not string" unless phone_number.class == String or phone_number.nil?
@@ -34,18 +34,7 @@ class Student < StudentShort
     false
   	end
 
-  	#валидатор
-  	def validate?
-  		exist_git? and exist_contact?
-  	end
-
-  	def exist_git?
-  		!self.git.nil?
-  	end
-
-  	def exist_contact?
-  		!(self.phone_number.nil? and self.telegram.nil? and self.mail.nil?)
-  	end
+  	
 	#конструктор
 	def initialize(first_name: nil, middle_name:nil, surname:nil, id:nil,phone_number:nil, git:nil,telegram:nil, mail:nil) 
 		self.first_name = first_name

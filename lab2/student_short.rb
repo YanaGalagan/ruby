@@ -29,5 +29,18 @@ class StudentShort
         res += " #{contact}" unless contact.nil?
         res
     end
+
+    #валидатор
+  	def validate?
+  		exist_git? and exist_contact?
+  	end
+
+  	def exist_git?
+  		!self.git.nil?
+  	end
+
+  	def exist_contact?
+  		!(self.phone_number.nil? and self.telegram.nil? and self.mail.nil?)
+  	end
 end
 
