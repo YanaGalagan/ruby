@@ -3,7 +3,7 @@ require_relative 'student'
 
 class DataTable
 
-  attr_accessor :table, :str_count, :st_count
+  attr_reader :table, :str_count, :st_count
   def initialize(table)
     self.str_count = table.length
 
@@ -23,5 +23,7 @@ class DataTable
   end
 
   private
+  attr_accessor :table
+  attr_writer :rows_count, :cols_count
 
 end
