@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DataList
+
+  attr_writer :list
   def initialize(objects)
     self.sel_objects = []
     self.list = objects
@@ -19,15 +21,32 @@ class DataList
     list_id
   end
 
+
+
+  def get_data
+    result = []
+    id = 0
+    list.each do |o|
+      elem = []
+      elem << id
+      # * необходима так как, если нам передадут [1,2,3], то передастся row.push(1,2,3)
+      elem.push(*table_fields(o))
+      result << elem
+      id += 1
+    end
+    DataTable.new(result)
+  end
+
   protected
   def get_names
 
   end
 
-  def get_data
-
+  def table_fields(object)
+    []
   end
-  
+
   private
-  attr_accessor :sel_objects, :list
+  attr_accessor :sel_objects
+  attr_reader :list
 end

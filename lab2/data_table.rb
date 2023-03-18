@@ -4,6 +4,7 @@ require_relative 'student'
 class DataTable
 
   attr_reader :table, :str_count, :st_count
+  attr_writer :table, :str_count, :st_count
   def initialize(table)
     self.str_count = table.length
 
@@ -21,6 +22,8 @@ class DataTable
     return nil if st>=st_count
     table[str][st]
   end
+
+
 
   private
   attr_accessor :table
