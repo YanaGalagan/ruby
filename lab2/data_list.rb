@@ -12,7 +12,6 @@ class DataList
   end
 
   def get_selected
-
     list_id=[]
     sel_objects.each do |i|
       list_id.append(list[i].id)
@@ -20,6 +19,15 @@ class DataList
     list_id
   end
 
+  protected
+  def get_names
+
+  end
+
+  def get_data
+
+  end
+  
   private
   attr_accessor :sel_objects, :list
 end
