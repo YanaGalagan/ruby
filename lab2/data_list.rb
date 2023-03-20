@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DataList
-
+  private_class_method :new
   attr_writer :list
   def initialize(objects)
     self.sel_objects = []
@@ -20,8 +20,6 @@ class DataList
     end
     list_id
   end
-
-
 
   def get_data
     result = []
