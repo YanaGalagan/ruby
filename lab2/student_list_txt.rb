@@ -15,6 +15,7 @@ class StudentListTxt < StudentListBase
     to_string(list)
   end
 
+  private
   def to_hash( list_strings)
     list_hashes = []
     list_strings.each do
