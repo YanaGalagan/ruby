@@ -5,6 +5,16 @@ require 'json'
 class StudentListTxt < StudentListBase
   public_class_method :new
 
+  protected
+
+  def string_to_list(str)
+    to_hash(str.split("\n"))
+  end
+
+  def list_to_string(list)
+    to_string(list)
+  end
+
   def to_hash( list_strings)
     list_hashes = []
     list_strings.each do
