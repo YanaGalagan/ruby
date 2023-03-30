@@ -69,7 +69,7 @@ class StudentListBase
   private
 
   def new_this_id
-    self.this_id = students.max_by(&:id).id + 1
+    self.this_id = students.max_by(&:id).id.to_i + 1
   end
   attr_reader :data_type
 end

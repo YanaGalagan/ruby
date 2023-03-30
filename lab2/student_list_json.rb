@@ -3,9 +3,8 @@ require_relative 'student_list_strat'
 require 'json'
 
 class StudentListJson < StudentListStrategy
-  public_class_method :new
 
-  protected
+  public_class_method :new
 
   def string_to_list(str)
     JSON.parse(str, {symbolize_names: true})
