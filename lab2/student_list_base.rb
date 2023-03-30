@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 class StudentListBase
-  # условно абстрактный
-  private_class_method :new
+
+  attr_writer :data_type
 
   # конструктор
-  def initialize
+  def initialize(data_type)
     self.students = []
     self.this_id = 1
+    self.data_type = data_type
   end
 
   def load_from_file(file_address)
-    list = string_to_list(File.read(file_address))
+    list = data_type.string_to_list(File.read(file_address))
     self.students = list.map{ |i|
       Student.new(**i)
     }
@@ -20,7 +21,7 @@ class StudentListBase
 
   def save_to_file(file_address)
     list = students.map(&:to_hash)
-    File.write(file_address, list_to_string(list))
+    File.write(file_address, data_type.list_to_string(list))
   end
 
   def student_by_id(student_id)
@@ -60,14 +61,15 @@ class StudentListBase
 
     data_list.append(slice)
   end
+
   protected
-  # паттерн Шаблон
-  def string_to_list(str); end
-  def list_to_string(list); end
+
+  attr_accessor :students, :this_id
 
   private
+
   def new_this_id
     self.this_id = students.max_by(&:id).id + 1
   end
-  attr_accessor :students, :this_id
+  attr_reader :data_type
 end
